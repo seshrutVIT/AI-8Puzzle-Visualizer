@@ -38,22 +38,22 @@ None. DLS is an uninformed search, so heuristics such as Misplaced Tiles and Man
 ## Screenshots
 Home page:
 
-![Home page](docs/home.png)
+![Home page](home.png)
 
 Solver with search in progress:
 
-![Solver](docs/solver.png)
+![Solver](solver.png)
 
 Solution summary and path:
 
-![Solution](docs/solution.png)
+![Solution](solution.png)
 
 Comparison page:
 
-![Comparison](docs/comparison.png)
+![Comparison](comparison.png)
 
 Algorithm page:
-![Algorithm](docs/algo.png)
+![Algorithm](algo.png)
 
 ## GitHub Pages URL
 https://seshrutVIT.github.io/AI-8Puzzle-Visualizer
