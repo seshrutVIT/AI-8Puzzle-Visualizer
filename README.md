@@ -15,14 +15,15 @@ Playback has Run, Pause, Resume, Next Step, Previous Step, Reset and a speed con
 Course: Artificial Intelligence. Assignment: Interactive 8-Puzzle Problem Solver using AI Search Algorithms (Case Study).
 
 ## Technologies Used
-- HTML5, CSS3, JavaScript (ES6)
-- React 18, built with Vite
-- Tailwind CSS (UI framework)
-- Framer Motion (animation library for tile movement and successor states)
-- GitHub Actions and GitHub Pages (deployment)
+- HTML5, CSS3, JavaScript (ES6 modules)
+- React 18, loaded from the esm.sh CDN (no Node.js, npm or build step)
+- htm, which lets React components be written as HTML templates without JSX
+- Tailwind CSS (UI framework), loaded from its CDN
+- GSAP (animation library for tile movement and successor states)
+- GitHub Pages (deployment)
 
 ## Search Algorithms Implemented
-**Depth Limited Search (DLS)**, written from scratch in `src/logic/depthLimitedSearch.js`.
+**Depth Limited Search (DLS)**, written from scratch in `js/logic/depthLimitedSearch.js`.
 
 - Uses an explicit stack, so the most recently generated node is expanded first.
 - Tests for the goal when a node is expanded.
@@ -38,25 +39,22 @@ None. DLS is an uninformed search, so heuristics such as Misplaced Tiles and Man
 ## Screenshots
 Home page:
 
-![Home page](home.png)
+![Home page](docs/home.png)
 
 Solver with search in progress:
 
-![Solver](solver.png)
+![Solver](docs/solver.png)
 
 Solution summary and path:
 
-![Solution](solution.png)
+![Solution](docs/solution.png)
 
 Comparison page:
 
-![Comparison](comparison.png)
-
-Algorithm page:
-![Algorithm](algo.png)
+![Comparison](docs/comparison.png)
 
 ## GitHub Pages URL
-https://seshrutVIT.github.io/AI-8Puzzle-Visualizer
+https://seshrutvit.github.io/AI-8Puzzle-Visualizer
 
 ## Student Details
 | | |
@@ -69,25 +67,35 @@ https://seshrutVIT.github.io/AI-8Puzzle-Visualizer
 ## References
 - S. Russell and P. Norvig, *Artificial Intelligence: A Modern Approach*, chapter 3, Solving Problems by Searching.
 - React documentation, https://react.dev
-- Vite documentation, https://vite.dev
+- htm documentation, https://github.com/developit/htm
 - Tailwind CSS documentation, https://tailwindcss.com/docs
-- Framer Motion documentation, https://motion.dev
+- GSAP documentation, https://gsap.com/docs
+- esm.sh CDN, https://esm.sh
 - GitHub Pages documentation, https://docs.github.com/pages
 
 The search algorithm, puzzle logic and interface code are original work for this assignment. No other third-party code or images are used.
 
 ## How to Run the Project
-Requires Node.js 18 or newer.
+No installation is needed. The libraries load from the internet, so an internet connection is required.
 
+The code uses ES modules, which browsers block when a page is opened by double-clicking `index.html`. Serve the folder instead, using either of these:
+
+- VS Code: install the Live Server extension, then right-click `index.html` and choose Open with Live Server.
+- Python: run `python -m http.server 8000` in the project folder and open http://localhost:8000.
+
+**Deploying to GitHub Pages:** push the repository to GitHub, open Settings > Pages, set Source to "Deploy from a branch", choose the `main` branch and the `/ (root)` folder, and save. The site is live at the URL above after a minute or two.
+
+## Project structure
 ```
-git clone https://github.com/seshrutVIT/AI-8Puzzle-Visualizer.git
-cd AI-8Puzzle-Visualizer
-npm install
-npm run dev
+index.html          page shell, loads Tailwind, React, htm and GSAP
+css/style.css       colours and reusable component styles
+js/main.js          starts the app
+js/App.js           navigation and page layout
+js/pages/           Home, Solver, Comparison, AlgorithmInfo
+js/components/      Board, MiniBoard, StateGrid, Controls, SearchDetails, SolutionSummary
+js/hooks/           playback timer, puzzle settings, hash navigation
+js/logic/           puzzle rules and the DLS algorithm (no React)
+js/content/         written text for the Home and Algorithm Information pages
+assets/             favicon
+images/, docs/      screenshots
 ```
-
-Open the address printed in the terminal (usually http://localhost:5173).
-
-To create a production build, run `npm run build`. The output goes to `dist/`, and `npm run preview` serves it locally.
-
-**Deploying to GitHub Pages:** push the repository to GitHub, open Settings > Pages, and set Source to GitHub Actions. The workflow in `.github/workflows/deploy.yml` builds and publishes the site on every push to `main`.
